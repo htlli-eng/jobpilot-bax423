@@ -126,6 +126,25 @@ streamlit run app.py
 
 The app loads `data/jobs_cleaned.csv` when it exists. If the cleaned file has not been created yet, it falls back to `data/jobs_sample.csv`.
 
+## Streamlit Community Cloud Deployment
+
+In Streamlit Community Cloud, set the Python version to **Python 3.11** in the
+app's Advanced settings. The included `runtime.txt` documents this requirement,
+but the Cloud setting should be selected explicitly rather than relying only on
+that file.
+
+The deployment requirements use CPU-only PyTorch to avoid installing unnecessary
+CUDA/NVIDIA packages. Job data is shared through a Streamlit resource cache,
+precomputed embeddings are memory-mapped, and the SentenceTransformer model is
+loaded lazily only after `Start Matching` is clicked. Annoy is the normal
+retrieval path; if Annoy cannot load, JobPilot falls back to cosine similarity.
+If the SentenceTransformer model cannot load, the app remains available and
+uses the existing lightweight rule-based matching path for that request.
+
+Full-dataset Batch Analytics remains available in the app but is computed only
+after the user clicks `Load Batch Analytics`, which keeps the initial Cloud
+startup lightweight.
+
 ## Notes
 
 This MVP does not include API ingestion, feedback learning, or resume generation yet. Those can be added later after the local matching workflow is stable.

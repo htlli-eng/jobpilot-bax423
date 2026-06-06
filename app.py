@@ -2189,9 +2189,9 @@ def get_data_path() -> Path:
     return CLEANED_DATA_PATH if CLEANED_DATA_PATH.exists() else SAMPLE_DATA_PATH
 
 
-@st.cache_data
+@st.cache_resource(show_spinner="Loading job data...")
 def load_jobs(path: Path) -> pd.DataFrame:
-    jobs = pd.read_csv(path)
+    jobs = pd.read_csv(path, dtype=str, keep_default_na=False)
     for column in [
         "job_id",
         "title",
@@ -2205,7 +2205,7 @@ def load_jobs(path: Path) -> pd.DataFrame:
     ]:
         if column not in jobs.columns:
             jobs[column] = ""
-        jobs[column] = jobs[column].fillna("").astype(str)
+        jobs[column] = jobs[column].astype(str, copy=False)
     jobs["raw_location"] = jobs["raw_location"].where(
         jobs["raw_location"].str.strip() != "",
         jobs["location"],
@@ -3869,8 +3869,9 @@ def clean_analytics_location(value: object) -> str:
 
 
 @st.cache_data(show_spinner=False)
-def compute_batch_analytics(jobs: pd.DataFrame) -> dict[str, object]:
+def compute_batch_analytics(_jobs: pd.DataFrame) -> dict[str, object]:
     """Compute aggregate insights from the full cleaned job dataset."""
+    jobs = _jobs
     total_jobs = len(jobs)
     unique_companies = (
         jobs["company"].replace("", pd.NA).nunique()
@@ -3955,9 +3956,20 @@ def compute_batch_analytics(jobs: pd.DataFrame) -> dict[str, object]:
 
 
 def render_batch_analytics(jobs: pd.DataFrame) -> None:
-    analytics = compute_batch_analytics(jobs)
     st.subheader("Batch Analytics")
     with st.expander("Full Job Dataset Insights", expanded=False):
+        if not st.button(
+            "Load Batch Analytics",
+            key="load_batch_analytics",
+            help="Computes aggregate insights from the full cleaned job dataset.",
+        ):
+            st.caption(
+                "Load these full-dataset insights when needed. They are deferred to "
+                "keep the app's initial startup lightweight."
+            )
+            return
+
+        analytics = compute_batch_analytics(jobs)
         st.write(
             "These analytics are computed from the full cleaned job dataset, not "
             "only the current recommendations."
@@ -4028,7 +4040,11 @@ def main() -> None:
     st.caption("Smart job matcher and tailored resume builder")
 
     data_path = get_data_path()
-    jobs = load_jobs(data_path)
+    try:
+        jobs = load_jobs(data_path)
+    except Exception as error:
+        st.error(f"Could not load job data from `{data_path}`: {error}")
+        st.stop()
 
     with st.sidebar:
         st.header("Search Preferences")

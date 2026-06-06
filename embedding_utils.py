@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from functools import lru_cache
 from pathlib import Path
 import re
 
 import numpy as np
 import pandas as pd
+import streamlit as st
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -52,19 +52,19 @@ def embedding_files_exist() -> bool:
     return EMBEDDINGS_PATH.exists() and INDEX_PATH.exists()
 
 
-@lru_cache(maxsize=1)
+@st.cache_resource(show_spinner=False)
 def load_job_embeddings(path: str = str(EMBEDDINGS_PATH)) -> np.ndarray:
-    return np.load(path)
+    return np.load(path, mmap_mode="r")
 
 
-@lru_cache(maxsize=1)
+@st.cache_resource(show_spinner=False)
 def load_embedding_index(path: str = str(INDEX_PATH)) -> pd.DataFrame:
     index = pd.read_csv(path)
     index["row_index"] = index["row_index"].astype(int)
     return index
 
 
-@lru_cache(maxsize=1)
+@st.cache_resource(show_spinner=False)
 def load_annoy_index(
     path: str = str(ANN_INDEX_PATH),
     embedding_dimension: int | None = None,
@@ -78,14 +78,20 @@ def load_annoy_index(
     return annoy_index
 
 
-@lru_cache(maxsize=1)
+@st.cache_resource(show_spinner="Loading semantic matching model...")
 def load_embedding_model(model_name: str = MODEL_NAME):
-    from sentence_transformers import SentenceTransformer
-
     try:
-        return SentenceTransformer(model_name, local_files_only=True)
-    except Exception:
-        return SentenceTransformer(model_name)
+        from sentence_transformers import SentenceTransformer
+
+        try:
+            return SentenceTransformer(model_name, local_files_only=True)
+        except Exception:
+            return SentenceTransformer(model_name)
+    except Exception as error:
+        raise RuntimeError(
+            "SentenceTransformer could not be loaded. "
+            "JobPilot will use lightweight rule-based matching for this request."
+        ) from error
 
 
 def normalize_section_heading(line: str) -> str:

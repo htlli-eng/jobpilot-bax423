@@ -1,7 +1,11 @@
-streamlit
-pandas
-pypdf
-numpy
-sentence-transformers
-annoy
-python-docx
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+streamlit==1.51.0
+pandas==2.2.3
+pypdf==5.1.0
+numpy==1.26.4
+scikit-learn==1.5.2
+torch==2.5.1+cpu
+sentence-transformers==3.3.1
+annoy==1.17.3
+python-docx==1.1.2
