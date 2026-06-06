@@ -1,0 +1,25 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Editor and operating-system files
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets and local Streamlit configuration
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Large raw and generated pipeline data not needed by the deployed app
+data/techmap-jobs-dump-2021-09.json
+data/raw_jobs.csv
+data/jobs_streamed.csv
+
+# Local debug exports
+jobpilot_full_debug_results*.csv

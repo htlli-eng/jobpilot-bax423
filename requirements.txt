@@ -1,0 +1,7 @@
+streamlit
+pandas
+pypdf
+numpy
+sentence-transformers
+annoy
+python-docx

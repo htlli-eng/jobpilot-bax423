@@ -1,0 +1,25 @@
+dataset,metric,count,total_jobs,share
+Full cleaned dataset,total jobs,44241,44241,1.0
+Full cleaned dataset,jobs with known salary,16204,44241,0.3663
+Full cleaned dataset,US jobs,11219,44241,0.2536
+Full cleaned dataset,remote jobs,1920,44241,0.0434
+Full cleaned dataset,California / Bay Area jobs,1309,44241,0.0296
+Full cleaned dataset,ML/AI,195,44241,0.0044
+Full cleaned dataset,Analytics,3118,44241,0.0705
+Full cleaned dataset,MLOps / Infrastructure,731,44241,0.0165
+Full cleaned dataset,Research,280,44241,0.0063
+Full cleaned dataset,Visa / Sponsorship,240,44241,0.0054
+Full cleaned dataset,Contract / Temp,3283,44241,0.0742
+Full cleaned dataset,Seniority,13157,44241,0.2974
+Embedded subset,total jobs,20000,20000,1.0
+Embedded subset,jobs with known salary,7080,20000,0.354
+Embedded subset,US jobs,5466,20000,0.2733
+Embedded subset,remote jobs,1307,20000,0.0654
+Embedded subset,California / Bay Area jobs,692,20000,0.0346
+Embedded subset,ML/AI,195,20000,0.0098
+Embedded subset,Analytics,2060,20000,0.103
+Embedded subset,MLOps / Infrastructure,716,20000,0.0358
+Embedded subset,Research,158,20000,0.0079
+Embedded subset,Visa / Sponsorship,152,20000,0.0076
+Embedded subset,Contract / Temp,1549,20000,0.0774
+Embedded subset,Seniority,7418,20000,0.3709

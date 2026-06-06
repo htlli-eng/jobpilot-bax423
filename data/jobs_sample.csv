@@ -1,0 +1,13 @@
+job_id,title,company,location,salary,description,apply_link
+1,Data Analyst,Northstar Health,San Francisco CA,"$92000","Analyze patient operations data using SQL Python and Tableau. Build dashboards and communicate insights to clinical teams.",https://example.com/jobs/1
+2,Business Intelligence Analyst,GreenGrid Energy,Sacramento CA,"$88000","Create KPI dashboards with Power BI SQL and Excel. Partner with finance and operations to improve reporting.",https://example.com/jobs/2
+3,Junior Data Scientist,FinSight Labs,Remote US,"$105000","Use Python statistics and machine learning to build predictive models for financial products. Requires strong SQL skills.",https://example.com/jobs/3
+4,Product Analyst,ShopSphere,Los Angeles CA,"$98000","Study customer behavior using SQL A/B testing Python and visualization tools. Present recommendations to product managers.",https://example.com/jobs/4
+5,Marketing Analytics Associate,BrightWave Media,New York NY,"$76000","Measure campaign performance using Excel SQL and Tableau. Build weekly reports for marketing stakeholders.",https://example.com/jobs/5
+6,Operations Analyst,MetroLogix,Oakland CA,"$84000","Improve warehouse and delivery performance with SQL dashboards process analysis and stakeholder interviews.",https://example.com/jobs/6
+7,Revenue Analyst,CloudPeak Software,Remote US,"$97000","Analyze SaaS revenue trends using Excel SQL and Salesforce data. Support monthly forecasting and executive reporting.",https://example.com/jobs/7
+8,Data Reporting Specialist,County Services Office,Davis CA,"$72000","Maintain public service reports with Excel SQL and data quality checks. Hybrid schedule with occasional onsite meetings.",https://example.com/jobs/8
+9,Customer Insights Analyst,Trailhead Retail,Seattle WA,"$90000","Use Python SQL and survey data to identify customer segments and improve retention strategy.",https://example.com/jobs/9
+10,Healthcare BI Developer,WellPath Analytics,San Diego CA,"$110000","Build Tableau dashboards and SQL data models for healthcare operations. Collaborate with analysts and data engineers.",https://example.com/jobs/10
+11,Sales Data Analyst,PeakPoint Robotics,Austin TX,"$82000","Track sales pipeline metrics using Excel SQL and CRM data. Some commission only bonus reporting is required.",https://example.com/jobs/11
+12,Night Shift Data Coordinator,QuickShip Logistics,Fresno CA,"$68000","Monitor logistics data feeds during night shift hours. Use Excel and basic SQL to flag shipment issues.",https://example.com/jobs/12

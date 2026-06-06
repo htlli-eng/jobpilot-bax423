@@ -1,0 +1,4 @@
+batch_id,incoming_records,kept_records,duplicate_records,cumulative_unique_records
+1,500,500,0,500
+2,500,496,4,996
+3,500,472,28,1468
